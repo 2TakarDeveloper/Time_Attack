@@ -204,8 +204,9 @@ public class XMLService {
         try {
             writer = new PrintWriter(filePath);
             writer.print("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
-                    "<ScoresBoard>\n" +
-                    "</ScoresBoard>");
+                    "<GameData>\n" +
+                    "<sound><volume>5.0</volume><sfx>true</sfx><bgm>true</bgm></sound>"+
+                    "</GameData>");
             writer.close();
         }catch (FileNotFoundException e) {
             e.printStackTrace();

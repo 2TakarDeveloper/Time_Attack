@@ -71,7 +71,8 @@ public class SettingsScene {
         layout.setBottom(bot);
 
         //swappable middleLayout
-
+        xmlService = new XMLService();
+        sound = xmlService.info();
         //audiosettings by default
         AudioSettings();
 
@@ -147,23 +148,19 @@ public class SettingsScene {
     }
 
     public void saveSettings(){
-        Sound s = new Sound ();
-        s.setBGM (AudioManager.BGM);
-        s.setSFX (AudioManager.SFX);
-        s.setMaxSound(AudioManager.volume);
-        XMLService xs=new XMLService ();
-        xs.updateSoundInfo (s.getMaxSound (),s.getSFX (),s.getBGM ());
+        sound.setBGM (AudioManager.BGM);
+        sound.setSFX (AudioManager.SFX);
+        sound.setMaxSound(AudioManager.volume);
+        xmlService.updateSoundInfo (sound.getMaxSound (),sound.getSFX (),sound.getBGM ());
     }
 
     private void AudioSettings(){
 
         //load from file
         try{
-            XMLService xs=new XMLService ();
-            Sound s=xs.info ();
-            AudioManager.BGM=s.getBGM ();
-            AudioManager.SFX=s.getSFX ();
-            AudioManager.volume=s.getMaxSound ();
+            AudioManager.BGM=sound.getBGM ();
+            AudioManager.SFX=sound.getSFX ();
+            AudioManager.volume=sound.getMaxSound ();
         }catch (Exception e){e.printStackTrace ();}
         //Controls Scene
         VBox AudioSettings=new VBox(20);
