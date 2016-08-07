@@ -44,11 +44,7 @@ public class SettingsScene {
 
         top.setStyle("-fx-background-color: linear-gradient(#1F03B5, #121716);");
         CustomButton backButton=new CustomButton("Back");
-        backButton.setOnAction(event ->{
-            AudioManager.buttonAudio();
-            mainMenu.getWindow().setScene(mainMenu.getScene());
-            saveSettings ();
-        } );
+
         top.getChildren().addAll(backButton,settingsText);
         layout.setTop(top);
 
@@ -72,6 +68,7 @@ public class SettingsScene {
 
         //swappable middleLayout
         xmlService = new XMLService();
+        xmlService.createSoundInfoFile();
         sound = xmlService.info();
         //audiosettings by default
         AudioSettings();
@@ -85,6 +82,12 @@ public class SettingsScene {
                 saveSettings ();
             }
         });
+
+        backButton.setOnAction(event ->{
+            AudioManager.buttonAudio();
+            mainMenu.getWindow().setScene(mainMenu.getScene());
+            saveSettings ();
+        } );
     }
 
     //overloaded constructor to access settings from Pause menu This one is specilized for Pause menu.Update with the other one cautiously

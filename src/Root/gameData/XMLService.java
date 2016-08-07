@@ -6,6 +6,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 
 import javax.xml.parsers.DocumentBuilder;
@@ -18,6 +19,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,6 +33,7 @@ public class XMLService {
     private Element root;
     private String filePath;
     private File DataFile;
+    private Path pathToFile;
 
     public XMLService(){
 
@@ -39,14 +42,17 @@ public class XMLService {
                 System.getProperty("user.name") +
                 "/AppData/Local/TimeAttack/HighscoreData.xml";
 
-        Path pathToFile = Paths.get(filePath);
+        pathToFile = Paths.get(filePath);
         DataFile= new File(filePath);
 
         try{
             if (!DataFile.exists()){
                 Files.createDirectories(pathToFile.getParent());
                 Files.createFile(pathToFile);
-                clearFile();
+                String data = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
+                        "<GameData>\n" +
+                        "</GameData>";
+                writeFile(filePath,data);
 
             }
 
@@ -60,8 +66,35 @@ public class XMLService {
         }
     }
 
+    public void createSoundInfoFile(){
+        filePath="C:/Users/" +
+                System.getProperty("user.name") +
+                "/AppData/Local/TimeAttack/SoundData.xml";
+
+        pathToFile = Paths.get(filePath);
+        DataFile= new File(filePath);
+        try {
+            if (!DataFile.exists()){
+                Files.createDirectories(pathToFile.getParent());
+                Files.createFile(pathToFile);
+                String data = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
+                        "<GameData>\n" +
+                        "<sound><volume>5.0</volume><sfx>true</sfx><bgm>true</bgm></sound>"+
+                        "</GameData>";
+                writeFile(filePath,data);
+
+            }
+            document = documentBuilder.parse(filePath);
+            root = document.getDocumentElement();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void updateSoundInfo(double maxVolume, boolean sfxInfo, boolean bgmInfo){
-        try {System.out.print(1);
+        try {
             Element sound = document.createElement("sound");
 
             Element volume = document.createElement("volume");
@@ -199,19 +232,26 @@ public class XMLService {
         return scoreList;
     }
 
-    public void clearFile(){
+    public void writeFile(String filePath, String data){
         PrintWriter writer ;
         try {
             writer = new PrintWriter(filePath);
-            writer.print("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
-                    "<GameData>\n" +
-                    "<sound><volume>5.0</volume><sfx>true</sfx><bgm>true</bgm></sound>"+
-                    "</GameData>");
+            writer.print(data);
             writer.close();
         }catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
 
+    }
+
+    public void clearFile(){
+        filePath="C:/Users/" +
+                System.getProperty("user.name") +
+                "/AppData/Local/TimeAttack/HighscoreData.xml";
+        String data = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
+                "<GameData>\n" +
+                "</GameData>";
+        writeFile(filePath,data);
     }
 }
