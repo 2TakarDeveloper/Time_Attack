@@ -8,6 +8,8 @@ How this works?
 package Root.Application;
 
 import Root.CustomContol.CustomButton;
+import Root.Settings.Sound;
+import Root.gameData.XMLService;
 import Root.scenes.*;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -56,6 +58,8 @@ public class Main extends Application {
     }
 
     public Main() {
+
+        loadSettings();
         //initialize buttons
 
         startGame = new CustomButton("Start Game");
@@ -157,7 +161,12 @@ public class Main extends Application {
 
 
 
-
+    private void  loadSettings(){
+        Sound sound = new XMLService().GetSoundSettings();
+        AudioManager.SFX=sound.getSFX();
+        AudioManager.BGM=sound.getSFX();
+        AudioManager.volume=sound.getVolume();
+    }
     public static void main(String[] args) {
         launch(args);
     }

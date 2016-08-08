@@ -36,8 +36,13 @@ public class XMLService {
     private Path pathToFile;
 
     public XMLService(){
+        createHighScoreFile();
+        createSoundInfoFile();
 
 
+    }
+
+    private void createHighScoreFile(){
         filePath="C:/Users/" +
                 System.getProperty("user.name") +
                 "/AppData/Local/TimeAttack/HighscoreData.xml";
@@ -86,14 +91,12 @@ public class XMLService {
             }
             document = documentBuilder.parse(filePath);
             root = document.getDocumentElement();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (SAXException | IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateSoundInfo(double maxVolume, boolean sfxInfo, boolean bgmInfo){
+    public void updateSoundSettings(double maxVolume, boolean sfxInfo, boolean bgmInfo){
         try {
             Element sound = document.createElement("sound");
 
@@ -140,7 +143,7 @@ public class XMLService {
         return node;
     }
 
-    public Sound info(){
+    public Sound GetSoundSettings(){
         Sound sound = null;
         try {
             document.getDocumentElement().normalize();
@@ -232,7 +235,7 @@ public class XMLService {
         return scoreList;
     }
 
-    public void writeFile(String filePath, String data){
+    private void writeFile(String filePath, String data){
         PrintWriter writer ;
         try {
             writer = new PrintWriter(filePath);

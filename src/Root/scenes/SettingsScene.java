@@ -28,6 +28,7 @@ public class SettingsScene {
     private  Slider slider;
     private Button SFX;
     private Button BGM;
+    private Button savebutton;
     private Sound sound;
     private XMLService xmlService;
 
@@ -44,8 +45,16 @@ public class SettingsScene {
 
         top.setStyle("-fx-background-color: linear-gradient(#1F03B5, #121716);");
         CustomButton backButton=new CustomButton("Back");
+        backButton.setOnAction(event ->{
+            AudioManager.buttonAudio();
+            mainMenu.getWindow().setScene(mainMenu.getScene());
+        } );
 
-        top.getChildren().addAll(backButton,settingsText);
+        savebutton= new CustomButton("Save");
+        savebutton.setOnAction(event -> saveSettings());
+        savebutton.setTranslateX(600-6);
+
+        top.getChildren().addAll(backButton,settingsText,savebutton);
         layout.setTop(top);
 
         VBox left=new VBox(30);
@@ -67,9 +76,7 @@ public class SettingsScene {
         layout.setBottom(bot);
 
         //swappable middleLayout
-        xmlService = new XMLService();
-        xmlService.createSoundInfoFile();
-        sound = xmlService.info();
+
         //audiosettings by default
         AudioSettings();
 
@@ -79,19 +86,15 @@ public class SettingsScene {
         scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
             if(e.getCode() == ESCAPE){
                 mainMenu.getWindow().setScene(mainMenu.getScene());
-                saveSettings ();
+                saveSettings();
             }
         });
 
-        backButton.setOnAction(event ->{
-            AudioManager.buttonAudio();
-            mainMenu.getWindow().setScene(mainMenu.getScene());
-            saveSettings ();
-        } );
+
     }
 
     //overloaded constructor to access settings from Pause menu This one is specilized for Pause menu.Update with the other one cautiously
-    public SettingsScene(Main mainMenu,PauseMenu gameScene) {
+    SettingsScene(Main mainMenu, PauseMenu gameScene) {
         layout=new BorderPane();
 
         HBox top=new HBox();
@@ -108,9 +111,13 @@ public class SettingsScene {
             AudioManager.buttonAudio();
             mainMenu.getWindow().setScene(gameScene.getScene());
             AudioManager.mediaPlayer.stop();
-            saveSettings ();
+
         } );
-        top.getChildren().addAll(backButton,settingsText);
+        savebutton= new CustomButton("Save");
+        savebutton.setOnAction(event -> saveSettings());
+        savebutton.setTranslateX(600-6);
+
+        top.getChildren().addAll(backButton,settingsText,savebutton);
         layout.setTop(top);
 
         VBox left=new VBox(30);
@@ -141,6 +148,12 @@ public class SettingsScene {
 
 
         scene=new Scene(layout,800,600);
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+            if(e.getCode() == ESCAPE){
+                mainMenu.getWindow().setScene(gameScene.getScene());
+                AudioManager.mediaPlayer.stop();
+            }
+        });
     }
 
 
@@ -150,20 +163,22 @@ public class SettingsScene {
         return  scene;
     }
 
-    public void saveSettings(){
+    private void saveSettings(){
         sound.setBGM (AudioManager.BGM);
         sound.setSFX (AudioManager.SFX);
-        sound.setMaxSound(AudioManager.volume);
-        xmlService.updateSoundInfo (sound.getMaxSound (),sound.getSFX (),sound.getBGM ());
+        sound.setVolume(AudioManager.volume);
+        xmlService.updateSoundSettings(sound.getVolume(),sound.getSFX (),sound.getBGM ());
     }
 
     private void AudioSettings(){
-
+        xmlService = new XMLService();
+        xmlService.createSoundInfoFile();
+        sound = xmlService.GetSoundSettings();
         //load from file
         try{
             AudioManager.BGM=sound.getBGM ();
             AudioManager.SFX=sound.getSFX ();
-            AudioManager.volume=sound.getMaxSound ();
+            AudioManager.volume=sound.getVolume();
         }catch (Exception e){e.printStackTrace ();}
         //Controls Scene
         VBox AudioSettings=new VBox(20);
@@ -217,7 +232,7 @@ public class SettingsScene {
                 SFX.setStyle ("-fx-background-color: #009f8d;");
                 AudioManager.mediaPlayer.play ();
                 sound.setSFX(true);
-                xmlService.info();
+                xmlService.GetSoundSettings();
             }else {
                 SFX.setStyle ("-fx-background-color: #db1803;");
                 sound.setSFX(false);
@@ -245,6 +260,8 @@ public class SettingsScene {
                 sound.setBGM(false);
             }
         });
+
+
 
         HBox boolButtons=new HBox (SFX,BGM);
         boolButtons.setSpacing (10);
