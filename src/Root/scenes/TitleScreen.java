@@ -24,17 +24,26 @@ class TitleScreen {
 
     Main mainMenu;
     private Text prompt;
+    private  Text GameName;
 
 
-    private Image titleImage= new Image("image/Time Attack.jpg");
+    private Image titleImage= new Image("image/TitleImage.png");
 
     TitleScreen(Main mainMenu) {
         AudioManager.TitleScreenAudio();
+
+
+        GameName= new Text("Time Attack");
+        GameName.setFont(Font.font("Gigi", FontWeight.EXTRA_BOLD, 120));
+        GameName.setCache(true);
+        GameName.setFill(Color.TAN);
+        GameName.setTranslateY(GameName.getTranslateY()-50);
+
         prompt= new Text("Press Any Key");
         prompt.setFont(Font.font("Blackadder ITC", FontWeight.BOLD, 60));
         prompt.setCache(true);
-        prompt.setFill(Color.CORAL);
-        prompt.setTranslateY(prompt.getTranslateY() - 50);
+        prompt.setFill(Color.WHITE);
+        prompt.setTranslateY(prompt.getTranslateY()+100);
 
         this.mainMenu=mainMenu;
 
@@ -47,10 +56,9 @@ class TitleScreen {
         BackgroundImage backgroundImage = new BackgroundImage(titleImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.ROUND, BackgroundPosition.CENTER,backgroundSize);
         Background background = new Background(backgroundImage);
 
-        VBox layout = new VBox(20,prompt);
-        layout.setAlignment(Pos.BOTTOM_CENTER);
+        VBox layout = new VBox(20,GameName,prompt);
+        layout.setAlignment(Pos.CENTER);
         layout.setBackground(background);
-       // layout.setStyle( "-fx-background-repeat: stretch;");
         scene = new Scene(layout, 800, 600);
 
 

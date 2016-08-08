@@ -3,6 +3,8 @@ package Root.Application;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
+
 
 public class AudioManager {
     public static MediaPlayer mediaPlayer;
@@ -19,7 +21,11 @@ public class AudioManager {
     private static String GetFilepPath(){
         return "file:///" +
                 System.getProperty("user.dir").replace("\\","/").replace(" ","%20")+
-                "/Resources/";
+                "/Resource/";
+
+        /*String path= new File("src/Resources/MainMenu.mp3").getAbsolutePath();
+        System.out.print(path);
+        Media media= new Media(new File(path).toURI().toString());*/
     }
 
     public static  void buttonAudio(){

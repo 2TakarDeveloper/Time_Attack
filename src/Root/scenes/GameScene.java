@@ -101,7 +101,7 @@ public class GameScene implements Runnable {
        // Pane.setStyle("-fx-background-color: linear-gradient(from 10% 25% to 100% 50%, #050094 , #0057A7);");
 
         BackgroundSize backgroundSize = new BackgroundSize(800, 600, true, true, true, true);
-        BackgroundImage backgroundImage = new BackgroundImage(new Image ("image/3.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.ROUND, BackgroundPosition.CENTER,backgroundSize);
+        BackgroundImage backgroundImage = new BackgroundImage(new Image ("image/GameBackground.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.ROUND, BackgroundPosition.CENTER,backgroundSize);
         Background background = new Background(backgroundImage);
         Pane.setBackground (background);
 

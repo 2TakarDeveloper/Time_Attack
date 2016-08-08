@@ -111,7 +111,7 @@ class PauseMenu {
         layout.setSpacing(20);
         layout.setAlignment(Pos.CENTER);
         BackgroundSize backgroundSize = new BackgroundSize(800, 600, true, true, true, false);
-        BackgroundImage backgroundImage = new BackgroundImage(new Image ("image/1.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.ROUND, BackgroundPosition.CENTER,backgroundSize);
+        BackgroundImage backgroundImage = new BackgroundImage(new Image ("image/TitleScreen.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.ROUND, BackgroundPosition.CENTER,backgroundSize);
         Background background = new Background(backgroundImage);
         layout.setBackground (background);
         scene = new Scene(layout, 800, 600);
