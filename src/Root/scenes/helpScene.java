@@ -240,9 +240,9 @@ public class helpScene {
         groupTitleC.setCache(true);
         groupTitleC.setFill(Color.web("#05FFB8"));
 
-        Text objectiveText=new Text("Your a Gem collector." +
-                "\nWent in a abandoned mine to collect gems." +
-                "\nSeems like Your not alone here." +
+        Text objectiveText=new Text("You're a Gem collector." +
+                "\nWent in an abandoned mine to collect gems." +
+                "\nSeems like You're not alone here." +
                 "\nCollect as much gems as you can." +
                 "\nGood Luck." );
         objectiveText.setFill(Color.web("#99ccff"));
