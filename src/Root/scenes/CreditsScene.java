@@ -67,7 +67,7 @@ public class CreditsScene{
                 "\nDeveloper:Shovon,Bashak" +
                 "\nResource Manager:Mahmudul Islam saky" +
                 "\nSpecial Thanks: Shovra,Das");
-        text.setFont(Font.font("Chiller", FontWeight.BOLD, 40));
+        text.setFont(Font.font("Chiller", FontWeight.BOLD, 20));
         text.setCache(true);
         text.setFill(Color.WHITE);
 
