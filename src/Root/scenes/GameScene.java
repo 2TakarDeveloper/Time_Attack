@@ -165,9 +165,7 @@ public class GameScene implements Runnable {
             pickup.setRandomPosition();
             pickup.setVisible(true);
 
-
             LevelLable.setValue(level);
-
 
             if(level % 1 == 0){
                 Enemy1 enemy = new Enemy1(10, 300, mainMenu.getWindow().getScene ().getWidth ()/40, player, gem);
@@ -176,7 +174,7 @@ public class GameScene implements Runnable {
                 enemy.setSpeed(2);
             }
 
-            if(level % 3 == 0){
+            if(level % 4 == 0){
                 Enemy3 enemy3;
                 for(int i=0; i<5 ; i++)
                 {
@@ -200,7 +198,6 @@ public class GameScene implements Runnable {
             }
 
             if(level == 3){
-
                 Enemy enemy = new Enemy2(1024, 0, mainMenu.getWindow().getScene ().getWidth ()/40, player, gem);
                 enemy.setSpeed(2);
                 Enemy.list.add(enemy);
@@ -229,9 +226,6 @@ public class GameScene implements Runnable {
                     Hp.setLayoutX(mainMenu.getWindow().getWidth()-110);
                     Hp.setValue(player.getHealthPoint());
                     Hp.setText(Hp.getTextAsString());
-
-
-
                 }
 
 

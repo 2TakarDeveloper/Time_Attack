@@ -38,12 +38,6 @@ public class Gem extends MovableObject {
 
     }
 
-
-
-
-
-
-
     public synchronized void resume() {
         isPaused = false;
         notify();
@@ -51,8 +45,8 @@ public class Gem extends MovableObject {
 
 
     private void setPosition(){
-        this.setCenterX(getRadius()*2 + randomNumber.nextInt((int) getScene().getWidth() - (int)getRadius()*2 ));
-        this.setCenterY(getRadius()*2 + randomNumber.nextInt((int) getScene().getHeight() - (int)getRadius()*2 ));
+        this.setCenterX(getRadius()*2 + 20 + randomNumber.nextInt((int) getScene().getWidth() - (int)getRadius()*2 - 30));
+        this.setCenterY(getRadius()*2 + 20 + randomNumber.nextInt((int) getScene().getHeight() - (int)getRadius()*2 -30));
 
     }
 

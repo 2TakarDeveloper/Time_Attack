@@ -57,7 +57,8 @@ public class Enemy3 extends Enemy {
     public void run() {
         while (!Player.dead) {
             Platform.runLater(() -> {
-                this.move();
+                if(this.getCenterX() > -50 || this.getCenterX() < getScene().getWidth() + 50)
+                    this.move();
 
                 if (this.intersect(player)) {
                     player.substractHealth(1);
