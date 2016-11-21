@@ -3,6 +3,7 @@ package Root.scenes;
 import Root.Application.AudioManager;
 import Root.Application.Main;
 import Root.CustomContol.CustomButton;
+import Root.GameObjects.Player;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -89,6 +90,7 @@ class PauseMenu {
 
         quitButton=new CustomButton("Quit");
         quitButton.setOnAction(e->{
+            Player.dead = true;
             AudioManager.buttonAudio();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Warning!");

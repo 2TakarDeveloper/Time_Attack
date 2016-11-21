@@ -48,6 +48,7 @@ public class LoadingScreen {
 
 
         scene.addEventFilter(MouseEvent.MOUSE_CLICKED, e ->{
+            if(AudioManager.BGM)
             AudioManager.mediaPlayer.stop();
             mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene());
 

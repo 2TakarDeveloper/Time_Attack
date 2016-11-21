@@ -230,8 +230,8 @@ public class SettingsScene {
 
             if(AudioManager.SFX){
                 SFX.setStyle ("-fx-background-color: #009f8d;");
-                AudioManager.mediaPlayer.play ();
                 sound.setSFX(true);
+                AudioManager.mediaPlayer.play ();
                 xmlService.GetSoundSettings();
             }else {
                 SFX.setStyle ("-fx-background-color: #db1803;");
@@ -248,9 +248,8 @@ public class SettingsScene {
         }
 
         BGM.setOnAction (event -> {
-            AudioManager.BGM=!AudioManager.BGM;
 
-            if(AudioManager.BGM){
+            if(!AudioManager.BGM){
                 BGM.setStyle ("-fx-background-color: #009f8d;");
                 AudioManager.mediaPlayer.play ();
                 sound.setBGM(true);
@@ -259,6 +258,7 @@ public class SettingsScene {
                 AudioManager.mediaPlayer.stop ();
                 sound.setBGM(false);
             }
+            AudioManager.BGM=!AudioManager.BGM;
         });
 
 

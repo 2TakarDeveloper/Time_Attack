@@ -84,7 +84,8 @@ class TitleScreen {
     }
 
     public void Stop(){
-        AudioManager.mediaPlayer.stop();
+        if(AudioManager.BGM)
+            AudioManager.mediaPlayer.stop();
         AudioManager.TitleKeyPress();
         mainMenu.getWindow().setScene(mainMenu.getScene());
         AudioManager.MainMenuAudio();

@@ -45,28 +45,32 @@ public class AudioManager {
     }
 
     public static void LoadingScreenAudio(){
-        try{
-            Media audioClip = new Media(GetFilepPath()+"AudioClip/LoadingScreen.mp3");
+        if(BGM) {
+            try {
+                Media audioClip = new Media(GetFilepPath() + "AudioClip/LoadingScreen.mp3");
 
-            mediaPlayer= new MediaPlayer(audioClip);
-            mediaPlayer.setVolume(volume);
-            mediaPlayer.play();
+                mediaPlayer = new MediaPlayer(audioClip);
+                mediaPlayer.setVolume(volume);
+                mediaPlayer.play();
 
-        }catch (Exception e){
-            e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public static void TitleScreenAudio(){
-        try{
-            Media audioClip = new Media(GetFilepPath()+"/AudioClip/TitleScreenAudio.mp3");
+        if(BGM) {
+            try {
+                Media audioClip = new Media(GetFilepPath() + "/AudioClip/TitleScreenAudio.mp3");
 
-            mediaPlayer= new MediaPlayer(audioClip);
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-            mediaPlayer.setVolume(volume);
-            mediaPlayer.play();
-        }catch (Exception e){
-            e.printStackTrace();
+                mediaPlayer = new MediaPlayer(audioClip);
+                mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+                mediaPlayer.setVolume(volume);
+                mediaPlayer.play();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
     }

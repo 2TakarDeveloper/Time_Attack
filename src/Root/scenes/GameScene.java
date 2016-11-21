@@ -157,10 +157,11 @@ public class GameScene implements Runnable {
         if (timer.getTime() % 15 ==0 && levelFlag == 0) {
             level++;
             levelFlag = 1;
-            Pickup pickup = pickups.get(new Random().nextInt(pickups.size()));
-            pickup.setRandomPosition();
-            pickup.setVisible(true);
-
+            if(timer.getTime() > 0) {
+                Pickup pickup = pickups.get(new Random().nextInt(pickups.size()));
+                pickup.setRandomPosition();
+                pickup.setVisible(true);
+            }
             LevelLable.setValue(level);
 
             if(level % 1 == 0){
@@ -234,7 +235,8 @@ public class GameScene implements Runnable {
         //runs when player is dead
         Platform.runLater(() ->
         {
-            AudioManager.mediaPlayer.stop();
+            if(AudioManager.BGM)
+                AudioManager.mediaPlayer.stop();
             mainMenu.getWindow().setResizable(false);
             gameOverScene = new GameOverScene(mainMenu, ScoreLable, level);
             mainMenu.getWindow().setScene(gameOverScene.getScene());

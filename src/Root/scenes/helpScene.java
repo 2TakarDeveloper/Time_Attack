@@ -160,16 +160,6 @@ public class helpScene {
         groupTitle.setFill(Color.web("#05FFB8"));
         groupTitle.setTranslateX(groupTitle.getLayoutX()+275);
 
-        //HPinfo
-        ImageView HPImage=new ImageView(new Image("image/HP.gif"));
-        HPImage.setFitHeight(25);
-        HPImage.setFitWidth(25);
-
-        Text HPText=new Text("Obviously it gives you Bonus Health");
-        HPText.setFont(Font.font("Harrington", FontWeight.EXTRA_BOLD, 19));
-        HPText.setFill(Color.WHITE);
-        HPText.setTranslateX(HPText.getLayoutX()+30);
-        HPText.setTranslateY(HPText.getLayoutY()-20);
         //SpeedUP
         ImageView SpeedUpImage=new ImageView(new Image("image/Speedup.gif"));
         SpeedUpImage.setFitHeight(25);
@@ -218,8 +208,7 @@ public class helpScene {
 
         //setupPowerUpsLayout
         powerUpGroup.getChildren().addAll(groupTitle
-                ,HPImage,HPText,
-                SpeedUpImage, SpeedUpText,
+                ,SpeedUpImage, SpeedUpText,
                 SpeedDownImage,SpeedDownText,
                 hourGlass,hourGlassText,
                 coin,coinText

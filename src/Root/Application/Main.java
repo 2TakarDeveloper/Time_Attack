@@ -65,7 +65,8 @@ public class Main extends Application {
         startGame = new CustomButton("Start Game");
         startGame.setOnAction(event1 -> {
             AudioManager.buttonAudio();
-            AudioManager.mediaPlayer.stop();
+            if(AudioManager.BGM)
+                AudioManager.mediaPlayer.stop();
             window.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
             window.setScene(new GameScene(this).getScene());
             window.setFullScreen(true);
