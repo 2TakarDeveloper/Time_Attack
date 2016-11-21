@@ -122,6 +122,7 @@ public class XMLService {
     }
 
     private void saveChange(Document documents) throws TransformerException {
+
         DOMSource source = new DOMSource(documents);
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -174,6 +175,7 @@ public class XMLService {
     }
 
     public void updateScoreBoard(String userName, String score, String lvlReached) throws TransformerException {
+        createHighScoreFile();
         ScoreBoard scores = new ScoreBoard(userName,score,lvlReached);
         Element scoreDetail = document.createElement("ScoreDetail");
 
@@ -195,11 +197,15 @@ public class XMLService {
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
+        filePath="C:/Users/" +
+                System.getProperty("user.name") +
+                "/AppData/Local/TimeAttack/HighscoreData.xml";
         StreamResult result = new StreamResult(filePath);
         transformer.transform(source, result);
     }
 
     public ArrayList<ScoreBoard> getScoreList() {
+        createHighScoreFile();
         ArrayList<ScoreBoard> scoreList = new ArrayList<>();
 
         try {
