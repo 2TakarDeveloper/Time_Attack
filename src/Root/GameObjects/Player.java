@@ -12,7 +12,6 @@ import javafx.scene.paint.Paint;
 
 public class Player extends MovableObject {
     public static boolean dead = false;
-    private int healthPoint=100;
     public synchronized void resume() {
         GameScene.isPaused = false;
         notify();
@@ -26,39 +25,12 @@ public class Player extends MovableObject {
         thisThread.start();
     }
 
-    public int getHealthPoint() {
-        return healthPoint;
-    }
-
-    public void addHealth(int healthPoint) {
-        GameScene.playerToolTip.setText("+"+healthPoint);
-        GameScene.playerToolTip.setTextFill(Color.LIMEGREEN);
-        GameScene.ft.playFromStart();
-        this.healthPoint += healthPoint;
-    }
-
-    public void substractHealth(int healthPoint) {
-        if(this.healthPoint-healthPoint>0){
-            this.healthPoint -= healthPoint;
-            GameScene.playerToolTip.setText("Ouch!");
-            GameScene.playerToolTip.setTextFill(Paint.valueOf("Red"));
-            GameScene.ft.playFromStart();
-            //Give red effect on player
-            this.setEffect (new Bloom (0.3));
-        }
-        else dead=true;
-
-    }
-
-
-
     private void movePlayer(){
         getScene().addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
             this.setEffect (new Bloom (1));
             if (!GameScene.isPaused) {
                 if (e.getSceneX() < getScene().getWidth() && e.getSceneX() > getScene().getX()) {
                     this.setCenterX(e.getSceneX());
-
                 }
                 if (e.getSceneY() < getScene().getHeight() && e.getSceneY() > getScene().getY()) {
                     this.setCenterY(e.getSceneY());

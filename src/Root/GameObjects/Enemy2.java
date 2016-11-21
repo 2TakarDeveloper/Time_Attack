@@ -97,7 +97,7 @@ public class Enemy2 extends Enemy {
                 this.followPlayer();
 
                 if (this.intersect(player)) {
-                    player.substractHealth(1);
+                    Player.dead = true;
                 }
 
                 if (this.intersect(gem)) {

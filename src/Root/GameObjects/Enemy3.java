@@ -61,7 +61,7 @@ public class Enemy3 extends Enemy {
                     this.move();
 
                 if (this.intersect(player)) {
-                    player.substractHealth(1);
+                    Player.dead = true;
                 }
 
                 if (this.intersect(gem)) {

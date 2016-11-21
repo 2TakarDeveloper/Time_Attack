@@ -69,7 +69,7 @@ public class Enemy1 extends Enemy implements Runnable{
                 if(this.isVisible()){
                     collidesWithWall();
                     if (this.intersect(player)) {
-                        player.substractHealth(5);
+                        Player.dead = true;
                         verticalDirection=!verticalDirection;
                         horizontalDirection=!horizontalDirection;
                     }

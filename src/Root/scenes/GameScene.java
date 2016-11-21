@@ -47,7 +47,6 @@ public class GameScene implements Runnable {
     private SpeedUp speedUp;
     private SpeedDown speedDown;
     private Coin coin;
-    private Health health;
     private ObjectTimer timer;
     private int levelFlag;
     private HourGlass hourGlass;
@@ -84,7 +83,6 @@ public class GameScene implements Runnable {
 
         ScoreLable = new CustomLable("Score",0,Color.PALEVIOLETRED,Font.font("Verdana", FontWeight.BOLD, 20));
         LevelLable=new CustomLable("Level",level,Color.RED,Font.font("Verdana", FontWeight.BOLD, 20));
-        Hp=new CustomLable("HP",player.getHealthPoint(),Color.VIOLET,Font.font("Verdana", FontWeight.BOLD, 20));
 
 
 
@@ -92,7 +90,7 @@ public class GameScene implements Runnable {
 
 
         Pane = new Pane(player);
-        Pane.getChildren().addAll(ScoreLable,LevelLable,Hp,playerToolTip);
+        Pane.getChildren().addAll(ScoreLable,LevelLable,playerToolTip);
         Pane.getChildren().addAll(gem);
 
 
@@ -118,7 +116,6 @@ public class GameScene implements Runnable {
         //Pickups
 
 
-        health = new Health(50,50,player,ScoreLable);
         speedDown = new SpeedDown(50,50,player,ScoreLable);
         speedUp = new SpeedUp(50,50,player,ScoreLable);
         coin= new Coin(50,50,player,ScoreLable);
@@ -126,9 +123,8 @@ public class GameScene implements Runnable {
 
 
 
-        Pane.getChildren().addAll(speedUp,health,speedDown,coin,hourGlass);
+        Pane.getChildren().addAll(speedUp,speedDown,coin,hourGlass);
         pickups.add(speedUp);
-        pickups.add(health);
         pickups.add(speedDown);
         pickups.add(coin);
         pickups.add(hourGlass);
@@ -223,9 +219,6 @@ public class GameScene implements Runnable {
                     ScoreLable.setText(ScoreLable.getTextAsString());
                     LevelLable.setText(LevelLable.getTextAsString());
                     LevelLable.setLayoutX(mainMenu.getWindow().getWidth()/2-20);
-                    Hp.setLayoutX(mainMenu.getWindow().getWidth()-110);
-                    Hp.setValue(player.getHealthPoint());
-                    Hp.setText(Hp.getTextAsString());
                 }
 
 
