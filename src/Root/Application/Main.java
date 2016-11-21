@@ -1,4 +1,4 @@
-/**
+/*
 How this works?
  This is The main Menu.It handles other game Root.scenes.Other Root.scenes transit into and out of this.
  Main Function creates an instance of main menu and it's components.
@@ -71,7 +71,7 @@ public class Main extends Application {
             window.setFullScreen(true);
         });
 
-
+       //huhuehue
         exit = new CustomButton("Exit");
         exit.setOnAction(event -> {
             AudioManager.buttonAudio();
@@ -80,10 +80,11 @@ public class Main extends Application {
             alert.setHeaderText("Are you sure?");
 
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
-                Platform.exit();
-                System.exit(0);
+            if (result.get() != ButtonType.OK) {
+                return;
             }
+            Platform.exit();
+            System.exit(0);
 
         });
 
