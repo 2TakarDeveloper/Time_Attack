@@ -39,7 +39,6 @@ public class GameScene implements Runnable {
     private Main mainMenu;
     private CustomLable ScoreLable;
     private CustomLable LevelLable;
-    private CustomLable Hp;
     private int level;
 
     private ArrayList<Pickup> pickups;
@@ -69,7 +68,7 @@ public class GameScene implements Runnable {
 
         Random randomPosition = new Random();
 
-        player = new Player(50, 500, mainMenu.getWindow().getScene ().getWidth ()/25);
+        player = new Player(50, 500, mainMenu.getWindow().getScene().getWidth ()/40);
         playerToolTip.setFont(Font.font("Verdana", FontWeight.NORMAL, 15));
 
         ft.setFromValue(1.0);
@@ -171,7 +170,7 @@ public class GameScene implements Runnable {
                 enemy.setSpeed(2);
             }
 
-            if(level % 4 == 0){
+            if(level % 2 == 0){
                 Enemy3 enemy3;
                 for(int i=0; i<5 ; i++)
                 {
