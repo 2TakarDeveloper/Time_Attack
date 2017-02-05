@@ -39,9 +39,9 @@ class GameOverScene {
         this.scoreLable = scoreLable;
         this.mainMenu=mainMenu;
         this.levelReached=levelReached;
+        Enemy.list.clear();
 
-
-
+        
         Next = new CustomButton("Next");
         Next.setOnAction(event1 -> query(mainMenu,levelReached));
 
