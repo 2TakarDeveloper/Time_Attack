@@ -6,6 +6,7 @@ import Root.CustomContol.CustomButton;
 import Root.CustomContol.CustomLable;
 import Root.CustomContol.ScoreBoard;
 import Root.Application.Main;
+import Root.GameObjects.Enemy;
 import Root.gameData.XMLService;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
